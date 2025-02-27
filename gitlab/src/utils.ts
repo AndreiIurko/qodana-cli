@@ -136,8 +136,10 @@ export async function isCliInstalled(): Promise<boolean> {
   return new Promise((resolve) => {
     exec('qodana -v', (error) => {
       if (error) {
+        console.log("Qodana CLI is not installed")
         resolve(false);
       } else {
+        console.log("Qodana CLI is installed")
         resolve(true)
       }
     })
@@ -164,6 +166,7 @@ export async function installCli(useNightly: boolean): Promise<void> {
 
 export async function prepareAgent(inputs: Inputs, useNightly: boolean): Promise<void> {
   if (!await isCliInstalled()) {
+    console.log("Installing Qodana CLI...")
     await installCli(useNightly)
   }
   if (!isNativeMode(inputs.args)) {

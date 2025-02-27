@@ -50285,10 +50285,8 @@ var require_utils5 = __commonJS({
         return new Promise((resolve) => {
           (0, child_process_1.exec)("qodana -v", (error) => {
             if (error) {
-              console.log("Qodana CLI is not installed");
               resolve(false);
             } else {
-              console.log("Qodana CLI is installed");
               resolve(true);
             }
           });
@@ -50319,7 +50317,6 @@ var require_utils5 = __commonJS({
     function prepareAgent(inputs, useNightly) {
       return __awaiter2(this, void 0, void 0, function* () {
         if (!(yield isCliInstalled())) {
-          console.log("Installing Qodana CLI...");
           yield installCli(useNightly);
         }
         if (!(0, qodana_12.isNativeMode)(inputs.args)) {
